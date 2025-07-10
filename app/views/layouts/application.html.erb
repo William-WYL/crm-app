@@ -25,6 +25,14 @@
   </head>
 
   <body>
+  <nav class="bg-blue-600 text-white py-4">
+      <div class="container mx-auto px-4 flex justify-between items-center">
+        <h1 class="text-xl font-bold">CRM App</h1>
+        <div class="space-x-4">
+          <%= link_to "Customers", root_path, class: "hover:underline" %>
+        </div>
+      </div>
+    </nav>
     <%= yield %>
   </body>
 </html>
