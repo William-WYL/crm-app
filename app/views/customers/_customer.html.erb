@@ -1,0 +1,60 @@
+# app/views/customers/_customer.html.erb
+<div class="customer-card card mb-4">
+  <div class="card-content">
+    <div class="media">
+      <div class="media-left">
+        <% if customer.image.attached? %>
+          <figure class="image is-128x128">
+            <%= image_tag customer.image, class: "customer-image" %>
+          </figure>
+        <% else %>
+          <figure class="image is-128x128 has-background-light">
+            <span class="icon is-large">
+              <i class="fas fa-user fa-3x"></i>
+            </span>
+          </figure>
+        <% end %>
+      </div>
+
+      <div class="media-content">
+        <p class="title is-4"><%= customer.full_name %></p>
+
+        <div class="content">
+          <% if customer.phone_number.present? %>
+            <p>
+              <span class="icon">
+                <i class="fas fa-phone"></i>
+              </span>
+              <%= customer.phone_number %>
+            </p>
+          <% end %>
+
+          <% if customer.email_address.present? %>
+            <p>
+              <span class="icon">
+                <i class="fas fa-envelope"></i>
+              </span>
+              <%= customer.email_address %>
+            </p>
+          <% else %>
+            <p class="has-text-danger">
+              <span class="icon">
+                <i class="fas fa-exclamation-triangle"></i>
+              </span>
+              Email missing
+            </p>
+          <% end %>
+
+          <% if customer.notes.present? %>
+            <p class="notes">
+              <span class="icon">
+                <i class="fas fa-sticky-note"></i>
+              </span>
+              <%= truncate(customer.notes, length: 100) %>
+            </p>
+          <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
