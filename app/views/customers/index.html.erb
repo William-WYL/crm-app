@@ -1,35 +1,32 @@
 <% content_for :title, @page_title %>
 
-<div class="container mx-auto py-8">
-  <h1 class="text-3xl font-bold mb-6"><%= @page_title %></h1>
+<div class="customer-container">
+  <h1 class="page-title"><%= @page_title %></h1>
 
-  # <!-- Nav -->
-  <div class="mb-6 flex space-x-4">
+  <div class="nav-links">
     <%= link_to "All Customers", root_path,
-                class: "btn #{current_page?(root_path) ? 'btn-primary' : 'btn-secondary'}" %>
+                class: "nav-link #{current_page?(root_path) ? 'active' : ''}" %>
 
     <%= link_to "Alphabetized", customers_alphabetized_path,
-                class: "btn #{current_page?(customers_alphabetized_path) ? 'btn-primary' : 'btn-secondary'}" %>
+                class: "nav-link #{current_page?(customers_alphabetized_path) ? 'active' : ''}" %>
 
     <%= link_to "Missing Email", customers_missing_email_path,
-                class: "btn #{current_page?(customers_missing_email_path) ? 'btn-primary' : 'btn-secondary'}" %>
+                class: "nav-link #{current_page?(customers_missing_email_path) ? 'active' : ''}" %>
   </div>
 
-  # <!-- Customers -->
-  <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
-    <% if @customers.any? %>
+  <% if @customers.any? %>
+    <div class="customers-grid">
       <% @customers.each do |customer| %>
         <%= render partial: 'customers/customer', locals: { customer: customer } %>
       <% end %>
-    <% else %>
-      <div class="col-span-full text-center py-12">
-        <p class="text-gray-500 text-lg">No customers found</p>
-      </div>
-    <% end %>
-  </div>
+    </div>
+  <% else %>
+    <div class="text-center py-12">
+      <p class="text-gray-500 text-lg">No customers found</p>
+    </div>
+  <% end %>
 
-  # <!-- Customers Count -->
-  <div class="mt-8 text-center text-gray-500">
+  <div class="customer-count">
     Showing <%= @customers.count %> customers
   </div>
 </div>
